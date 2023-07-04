@@ -34,3 +34,6 @@ def send_emails(email, token):
 def decode_the_token():
     email = jwt.decode(request.headers["token"], "zanc", algorithms="HS256")
     return email
+
+
+print('testing')
