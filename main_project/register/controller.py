@@ -22,3 +22,18 @@ def update_Verify(email):
             return result
         except Exception as e:
             return str(e)
+
+def update_password(email, new_password):
+    try:
+        result = client.UserDb.UserCollection.update_one({"email": email}, {"$set": {"password": new_password}})
+        return result
+    except Exception as e:
+        return str(e)
+
+def remove_user(email):
+    try:
+        result = client.UserDb.UserCollection.update_one({"email": email}, {"$set": {"is_verified": False}})
+        result = True if result.acknowledged else False
+        return result
+    except Exception as e:
+        return str(e)

@@ -20,3 +20,5 @@ email_sender.set_content(body)
 with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
     smtp.login(sender, password)
     smtp.sendmail(sender, receiver, email_sender.as_string())
+
+
