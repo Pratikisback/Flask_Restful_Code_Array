@@ -15,19 +15,14 @@ def update_Verify(email):
     try:
         result = client.UserDb.UserCollection.update_one({"email": email}, {"$set": {"is_verified": True}})
         result = True if result.acknowledged else False
-        # if result.acknowledged == True:
-        #
-        #     return True
-        # else:
-        #     return False
         return result
     except Exception as e:
         return str(e)
 
 
-def update_password(email, new_password):
+def update_password(email, new_hashed_password):
     try:
-        result = client.UserDb.UserCollection.update_one({"email": email}, {"$set": {"password": new_password}})
+        result = client.UserDb.UserCollection.update_one({"email": email}, {"$set": {"password": new_hashed_password}})
         return result
     except Exception as e:
         return str(e)
@@ -37,6 +32,14 @@ def remove_user(email):
     try:
         result = client.UserDb.UserCollection.update_one({"email": email}, {"$set": {"is_verified": False}})
         result = True if result.acknowledged else False
+        return result
+    except Exception as e:
+        return str(e)
+
+
+def show_user_details(email):
+    try:
+        result = client.UserDb.UserCollection.find_one({"email": email}, {"email": 1, "username": 1})
         return result
     except Exception as e:
         return str(e)

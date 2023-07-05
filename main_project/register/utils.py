@@ -14,7 +14,7 @@ def send_emails(email, token):
     receiver = email
     print(receiver)
     subject = "This is a test email"
-    body = f"This is token {token}"
+    body = f"http://127.0.0.1:5000/verify?token={token}"
 
     em = EmailMessage()
     em['From'] = sender
